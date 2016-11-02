@@ -18,8 +18,8 @@ public class GenerateTree : MonoBehaviour {
 	public int maxBaseAngleY = 105;
 	public int minLength = 6;
 	public int maxLength = 20;
-	public int minWidth = 4;
-	public int maxWidth = 10;
+	public int minWidth = 8;
+	public int maxWidth = 15;
 
 	private float deg_to_rad = 3.14159265f / 180.0f;
 	private LineRenderer line;
@@ -100,7 +100,7 @@ public class GenerateTree : MonoBehaviour {
 		}
 
 		//Draw the current branch	
-		drawWithCaps (pos, pos2, length);
+		drawWithCaps (pos, pos2, width);
 
 		//Avoid angle > 360 or < 0
 		angle = clean_angle (angle);
@@ -111,7 +111,7 @@ public class GenerateTree : MonoBehaviour {
 
 		float angleSpread = Random.Range(minAngleSpread,maxAngleSpread);
 		if (Random.value * depth > 1.0f) {
-			drawTree (pos2, angle - angleSpread, angle2 - angleSpread, nb, depth - 1, length / (1 + Random.value),width/ (1 + Random.value));
+			drawTree (pos2, angle - angleSpread, angle2 - angleSpread, nb, depth - 1, length / (1 + Random.value),width / (1 + Random.value));
 		} else {
 			drawTree (pos2, angle - angleSpread, angle2 - angleSpread, nb, 1, length / (1 + Random.value),width/ (1 + Random.value));
 		}
@@ -144,12 +144,11 @@ public class GenerateTree : MonoBehaviour {
 	void Start () {
 		
 		/* Make a tree */
-
 		float angleX =  Random.Range(minBaseAngleX, maxBaseAngleX);
 		float angleY = Random.Range(minBaseAngleY, maxBaseAngleY);
-		float length =  Random.Range(minLength, maxLength);
+		float length = Random.Range(minLength, maxLength);
 		float width = Random.Range(minWidth, maxWidth);	
-
+	
 		fractalTree = new GameObject ("FractalTree");
 		drawTree (					
 			new Vector3 (posX, posY, posZ),		//Satart position
@@ -194,6 +193,29 @@ public class GenerateTree : MonoBehaviour {
 
 
 	void Update () {		
+
+
+		//Press space for make a new tree
+		if (Input.GetKeyDown ("space")) {
+			
+			/* Make a tree */
+			float angleX = Random.Range (minBaseAngleX, maxBaseAngleX);
+			float angleY = Random.Range (minBaseAngleY, maxBaseAngleY);
+			float length = Random.Range (minLength, maxLength);
+			float width = Random.Range (minWidth, maxWidth);	
+
+			Destroy (fractalTree);
+			fractalTree = new GameObject ("FractalTree");
+			drawTree (
+				new Vector3 (posX, posY, posZ),		//Satart position
+				angleX, angleX, 					//start angle x y
+				2, 								    //Nb subdivision per branch
+				depth,								//Nb iteration
+				length,								//Length
+				width 								//Width
+			);	
+
+		}
 
 	}
 
