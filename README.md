@@ -6,6 +6,5 @@ Some examples of generated tree :
 
 ![alt tag](https://raw.githubusercontent.com/dtanguy/fractal-tree/master/img/2.jpg)
 ![alt tag](https://raw.githubusercontent.com/dtanguy/fractal-tree/master/img/3.jpg)
-![alt tag](https://raw.githubusercontent.com/dtanguy/fractal-tree/master/img/4.jpg)
 ![alt tag](https://raw.githubusercontent.com/dtanguy/fractal-tree/master/img/5.jpg)
 ![alt tag](https://raw.githubusercontent.com/dtanguy/fractal-tree/master/img/6.jpg)
